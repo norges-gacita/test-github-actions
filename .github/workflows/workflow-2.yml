@@ -7,15 +7,23 @@ on:
             - completed
 
 jobs:
+    job-0:
+        runs-on: ubuntu-latest    
+        environment: ENV-1 
+        outputs:
+          stageEnv: ${{ steps.init.outputs.stageEnv }}
+        
+        steps:        
+          - name: Make environment variables global 
+            id: init
+            run: |
+              echo "stageEnv=${{ vars.TEST }}" >> $GITHUB_OUTPUT
     job-1:
-        environment: 'ENV-1'
-        if: ${{ vars.TEST == 'true' }}
+        needs: job-0
+        if: ${{ needs.job-0.outputs.stageEnv == 'true' }}
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
-
             - name: Echo environment variable
-              run: echo ${{ vars.TEST }}
+              run: echo ${{ needs.job-0.outputs.stageEnv }}
 
             # Add your desired steps here
