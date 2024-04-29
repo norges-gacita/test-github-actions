@@ -8,9 +8,9 @@ on:
 
 jobs:
     job-1:
+        environment: 'ENV-1'
         if: ${{ vars.TEST == 'true' }}
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
