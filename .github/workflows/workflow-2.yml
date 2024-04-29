@@ -7,7 +7,8 @@ on:
             - completed
 
 jobs:
-    build:
+    job-1:
+        if: ${{ vars.TEST == 'true' }}
         runs-on: ubuntu-latest
 
         steps:
