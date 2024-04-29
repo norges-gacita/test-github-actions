@@ -19,11 +19,11 @@ jobs:
             run: |
               echo "stageEnv=${{ vars.TEST }}" >> $GITHUB_OUTPUT
     job-1:
-        needs: job-0
-        if: ${{ needs.job-0.outputs.stageEnv == 'true' }}
+        if: ${{ vars.TEST == 'true' }}
         runs-on: ubuntu-latest
+        environment: ENV-1
         steps:
             - name: Echo environment variable
-              run: echo ${{ needs.job-0.outputs.stageEnv }}
+              run: echo ${{ vars.TEST }}
 
             # Add your desired steps here
