@@ -12,12 +12,14 @@ jobs:
         environment: ENV-1 
         outputs:
           var_1: ${{ steps.init.outputs.var_1 }}
+          var_2: ${{ steps.init.outputs.var_2 }}
         
         steps:        
           - name: Make environment variables global 
             id: init
             run: |
               echo "var_1=${{ vars.VAR_1 }}" >> $GITHUB_OUTPUT
+              echo "var_2=${{ vars.VAR_2 }}" >> $GITHUB_OUTPUT
     job-1:
         needs: job-0
         if: ${{ needs.job-0.outputs.var_1 == 'true' }}
@@ -25,4 +27,7 @@ jobs:
         environment: ENV-1
         steps:
             - name: Echo environment variable
-              run: echo ${{ needs.job-0.outputs.var_1 }}
+              run: echo VAR_1 = ${{ needs.job-0.outputs.var_1 }}
+
+            - name: Echo environment variable
+              run: echo VAR_2 = ${{ needs.job-0.outputs.var_2 }}
