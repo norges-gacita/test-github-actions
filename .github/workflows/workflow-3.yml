@@ -13,3 +13,6 @@ jobs:
         steps:
         - name: Print Hello World
           run: echo "The branch running this is:" ${{ github.event.workflow_run.head_branch }}
+            
+        - name: Print Commit Hash
+          run: echo "The commit hash is:" ${{ github.sha }}

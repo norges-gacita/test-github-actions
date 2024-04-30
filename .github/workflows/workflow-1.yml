@@ -12,3 +12,6 @@ jobs:
         steps:
         - name: Print Workflow-1
           run: echo "Workflow-1 is running..."
+            
+        - name: Print Commit Hash
+          run: echo "The commit hash is:" ${{ github.sha }}
