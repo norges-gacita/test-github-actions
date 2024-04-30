@@ -12,4 +12,4 @@ jobs:
 
         steps:
         - name: Print Hello World
-          run: echo "The branch running this is:"" ${{ github.event.workflow_run.head_branch }}
+          run: echo "The branch running this is:" ${{ github.event.workflow_run.head_branch }}
