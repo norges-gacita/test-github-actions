@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-        - name: Print Hello World
+        - name: Print Head Branch
           run: echo "The branch running this is:" ${{ github.event.workflow_run.head_branch }}
             
         - name: Print Commit Hash
