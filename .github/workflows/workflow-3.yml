@@ -1,0 +1,15 @@
+name: Workflow-3
+
+on:
+    workflow_run:
+        workflows: ["Workflow-2"]
+        types:
+            - completed
+
+jobs:
+    job-1:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Print Hello World
+          run: echo "The branch running this is:"" ${{ github.event.workflow_run.head_branch }}
