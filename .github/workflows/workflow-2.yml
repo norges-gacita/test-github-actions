@@ -30,3 +30,6 @@ jobs:
 
             - name: Echo environment variable 2
               run: echo VAR_2 = ${{ needs.job-0.outputs.var_2 }}
+            
+            - name: Print Hello World
+              run: echo "The branch running this is:" ${{ github.event.workflow_run.head_branch }}

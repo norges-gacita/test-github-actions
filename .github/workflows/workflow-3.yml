@@ -1,7 +1,10 @@
 name: Workflow-3
 
 on:
-    deployment
+    workflow_run:
+        workflows: ["Workflow-2"]
+        types:
+            - completed
 
 jobs:
     job-1:
@@ -9,4 +12,4 @@ jobs:
 
         steps:
         - name: Print Hello World
-          run: echo "The branch running this is:" ${{ github.ref_name }}
+          run: echo "The branch running this is:" ${{ github.event.workflow_run.head_branch }}
