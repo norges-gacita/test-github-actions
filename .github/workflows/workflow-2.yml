@@ -21,8 +21,8 @@ jobs:
           - name: Make environment variables global 
             id: init
             run: |
-              echo "var_1=${{ vars.VAR_1 }}" >> $GITHUB_OUTPUT
-              echo "var_2=${{ vars.VAR_2 }}" >> $GITHUB_OUTPUT
+              Write-Output "var_1=${{ vars.VAR_1 }}" | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+              Write-Output "var_2=${{ vars.VAR_2 }}" | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
     job-1:
         name: Job 1
         needs: job-0
